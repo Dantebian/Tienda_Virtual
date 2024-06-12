@@ -191,7 +191,8 @@ input[type="email"]:focus {
 
 input[type="button"],
 input[type="submit"],
-button, .button {
+button,
+.button {
     display: block;
     border-radius: 2px;
     width: auto;
@@ -221,7 +222,7 @@ button {
 /*Estilos de contenido central*/
 #central {
     width: 72%;
-    min-height: 500px   ;
+    min-height: 500px;
     float: right;
     border-left: 1px solid #ccc;
     box-shadow: -5px -1px 5px #ddd;
