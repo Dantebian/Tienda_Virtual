@@ -1,107 +1,26 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
+require_once 'autoload.php';
+require_once 'views/layouts/header.php';
+require_once 'views/layouts/sidebar.php';
 
-<head>
-    <meta charset="UTF-8">
-    <title>Tienda Virtual</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
+if (isset($_GET['controller'])) {
+    $nombre_controlador = $_GET['controller'] . 'Controller';
+} else {
+    echo 'La pagina que busca no existe';
+    exit();
+}
 
-<body>
-    <div id="container">
-        <!-- CABECERA -->
-        <header id="header">
-            <div id="logo">
-                <img src="assets/img/logo.jpg" alt="Tienda Logo" />
-                <a href="index.php">
-                    Tienda de ropa
-                </a>
-            </div>
-        </header>
+if (class_exists($nombre_controlador)) {
+    $controlador = new $nombre_controlador();
 
-        <!-- MENU -->
-        <nav id="menu">
-            <ul>
-                <li>
-                    <a href="#">Inicio</a>
-                </li>
-                <li>
-                    <a href="#">Categoria 1</a>
-                </li>
-                <li>
-                    <a href="#">Categoria 2</a>
-                </li>
-                <li>
-                    <a href="#">Categoria 3</a>
-                </li>
-                <li>
-                    <a href="#">Categoria 4</a>
-                </li>
-                <li>
-                    <a href="#">Categoria 5</a>
-                </li>
-            </ul>
-        </nav>
+    if (isset($_GET['action']) && method_exists($controlador, $_GET['action'])) {
+        $action = $_GET['action'];
+        $controlador->$action();
+    } else {
+        echo 'La pagina que busca no existe';
+    }
+} else {
+    echo 'La pagina que busca no existe';
+}
 
-        <div id="content">
-
-            <!-- BARRA LATERAL -->
-            <aside id="lateral">
-
-                <div id="login" class="block_aside">
-                    <h3>Loguearse</h3>
-                    <form action="#" method="post">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" />
-                        <label for="password">Contraseña</label>
-                        <input type="password" name="password" />
-                        <input type="submit" value="Enviar" />
-                    </form>
-
-                    <ul>
-                        <li><a href="#">Mis pedidos</a></li>
-                        <li><a href="#">Gestionar pedidos</a></li>
-                        <li><a href="#">Gestionar categorias</a></li>
-                    </ul>
-                </div>
-
-            </aside>
-
-            <!-- CONTENIDO CENTRAL -->
-            <div id="central">
-                <h1>Productos destacados</h1>
-
-                <div class="product">
-                    <img src="assets/img/remeras.jpeg" />
-                    <h2>Remeras Oversize</h2>
-                    <p>$4500</p>
-                    <a href="" class="button">Comprar</a>
-                </div>
-
-                <div class="product">
-                    <img src="assets/img/remeras.jpeg" />
-                    <h2>Remeras Oversize</h2>
-                    <p>$4500</p>
-                    <a href="" class="button">Comprar</a>
-                </div>
-
-                <div class="product">
-                    <img src="assets/img/remeras.jpeg" />
-                    <h2>Remeras Oversize</h2>
-                    <p>$4500</p>
-                    <a href="" class="button">Comprar</a>
-                </div>
-
-
-            </div>
-        </div>
-
-        <!-- PIE DE PAGINA -->
-        <footer id="footer">
-            <p>Desarrollado por Dante Bianco &copy; <?= date('Y') ?> </p>
-
-        </footer>
-    </div>
-</body>
-
-</html>
+require_once 'views/layouts/footer.php';
