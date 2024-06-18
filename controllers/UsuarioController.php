@@ -1,12 +1,12 @@
 <?php
-
 require_once 'models/usuario.php';
 
-class UsuarioController
+class usuarioController
 {
+
     public function index()
     {
-        echo 'index controller';
+        echo "Controlador Usuarios, Acción index";
     }
 
     public function registro()
@@ -19,7 +19,7 @@ class UsuarioController
         if (isset($_POST)) {
 
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-            $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : false;
+            $apellido = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
             $email = isset($_POST['email']) ? $_POST['email'] : false;
             $password = isset($_POST['password']) ? $_POST['password'] : false;
 
@@ -48,8 +48,8 @@ class UsuarioController
     public function login()
     {
         if (isset($_POST)) {
-            //Identificar al usuario
-            //Consultar a la base de datos
+            // Identificar al usuario
+            // Consulta a la base de datos
             $usuario = new Usuario();
             $usuario->setEmail($_POST['email']);
             $usuario->setPassword($_POST['password']);
@@ -57,13 +57,13 @@ class UsuarioController
             $identity = $usuario->login();
 
             if ($identity && is_object($identity)) {
-                $_SESSION['indentity'] = $identity;
+                $_SESSION['identity'] = $identity;
 
-                if ($identity->role == 'admin') {
+                if ($identity->rol == 'admin') {
                     $_SESSION['admin'] = true;
                 }
             } else {
-                $_SESSION['error_login'] = 'Identificacion fallida!';
+                $_SESSION['error_login'] = 'Identificación fallida !!';
             }
         }
         header("Location:" . base_url);
