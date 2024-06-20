@@ -19,7 +19,7 @@ class usuarioController
         if (isset($_POST)) {
 
             $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-            $apellido = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
+            $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : false;
             $email = isset($_POST['email']) ? $_POST['email'] : false;
             $password = isset($_POST['password']) ? $_POST['password'] : false;
 
