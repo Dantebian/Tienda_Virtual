@@ -120,13 +120,8 @@ class Producto
         $sql = "INSERT INTO productos VALUES(NULL, {$this->getCategoria_id()}, '{$this->getNombre()}', '{$this->getDescripcion()}', {$this->getPrecio()}, {$this->getStock()}, NULL, CURDATE(), NULL);";
         $save = $this->db->query($sql);
 
-        echo $sql;
-        echo "<br/>";
-        echo $this->db->error;
-        die();
-
         $result = false;
-        if ($save) {
+        if ($save) {    
             $result = true;
         }
         return $result;

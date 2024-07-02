@@ -2,7 +2,7 @@
 
 <div class="form_container">
 
-    <form action="<?= base_url ?>producto/save" mehot="POST">
+    <form action="<?= base_url ?>producto/save" method="POST">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" />
 
@@ -10,7 +10,7 @@
         <textarea name="descripcion"></textarea>
 
         <label for="precio">Precio</label>
-        <input type="text" name="precio" />
+        <input type="number" name="precio" />
 
         <label for="stock">Stock</label>
         <input type="number" name="stock" />
